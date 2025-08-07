@@ -1,4 +1,4 @@
-import useTodoApp from "/scripts/composable/TodoApp.js";
+import useTodoApp from "./composable/TodoApp.js";
 
 /**
  * Inicializa funcionalidades da aplicação.
