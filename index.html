@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TODO LIST</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script type="module" src="scripts/script.js"></script>
+  </head>
+  <body>
+    <header class="column g-3">
+      <h1 class="text-center">Minhas tarefas</h1>
+      <section class="row j-center g-1 px-2">
+        <input
+          type="text"
+          class="input rounded"
+          id="new-task-title"
+          placeholder="Adicionar nova tarefa..."
+          autocomplete="off"
+          onchange="app.openDialog()"
+        />
+        <button class="btn info rounded" onclick="app.openDialog()">
+          Adicionar tarefa
+        </button>
+      </section>
+      <section class="responsive-row px-2 j-center g-3">
+        <button
+          class="btn rounded info filter active"
+          onclick="app.setFilter(0, event)"
+        >
+          Todas
+          <i class="fa fa-check"></i>
+        </button>
+        <button
+          class="btn rounded warning filter"
+          onclick="app.setFilter(1, event)"
+        >
+          Pendentes
+          <i class="fa fa-check"></i>
+        </button>
+        <button
+          class="btn rounded success filter"
+          onclick="app.setFilter(2, event)"
+        >
+          Concluídas
+          <i class="fa fa-check"></i>
+        </button>
+      </section>
+      <div id="task-list" class="column px-2 g-3"></div>
+    </header>
+    <div class="dialog" id="task-dialog">
+      <div class="overlay" onclick="app.closeDialog()"></div>
+      <form
+        onsubmit="app.saveTask(event)"
+        class="card column g-3 rounded"
+        id="task-card"
+      >
+        <header class="row j-s-between g-2 px-2">
+          <h2><span class="op-50" id="task-id"></span> - Detalhes da tarefa</h2>
+          <button class="btn" onclick="app.closeDialog()" icon>&#x2715;</button>
+        </header>
+        <article class="column g-1 px-2">
+          <label for="task-title">Tarefa:</label>
+          <input
+            type="text"
+            id="task-title"
+            class="input rounded"
+            autocomplete="off"
+            required
+          />
+        </article>
+        <article class="column g-1 px-2">
+          <label for="task-date">Data de vencimento:</label>
+          <input type="date" id="task-date" class="input rounded" required />
+        </article>
+        <article class="column g-1 px-2">
+          <label for="task-priority">Prioridade:</label>
+          <select id="task-priority" class="input rounded" required>
+            <option value="0">Baixa</option>
+            <option value="1">Média</option>
+            <option value="2">Alta</option>
+          </select>
+        </article>
+        <article class="column g-2 px-2">
+          <label for="task-description">Descrição:</label>
+          <textarea
+            class="input no-resize rounded"
+            id="task-description"
+            rows="5"
+            required
+          ></textarea>
+        </article>
+        <footer class="row g-3 j-end px-2">
+          <button type="submit" class="btn rounded info">Salvar</button>
+          <button class="btn rounded neutral" onclick="app.closeDialog()">
+            Cancelar
+          </button>
+        </footer>
+      </form>
+    </div>
+  </body>
+</html>
